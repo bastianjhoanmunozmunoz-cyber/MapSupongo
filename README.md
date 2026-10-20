@@ -22,13 +22,13 @@ Aplicación Android en Java para registrar lugares sobre Google Maps, consultar 
 
 1. Crea un proyecto en Google Cloud, activa **Maps SDK for Android** y genera una clave de API.
 2. Restringe la clave a aplicaciones Android con el nombre de paquete `com.example.mapgps` y la huella SHA-1 de depuración de tu instalación.
-3. Guarda la clave localmente en el archivo `~/.gradle/gradle.properties` (en Windows, `%USERPROFILE%\.gradle\gradle.properties`):
+3. Guarda la clave en `secrets.properties`, en la raíz del proyecto, junto a `settings.gradle.kts`:
 
    ```properties
    MAPS_API_KEY=PEGA_AQUI_TU_CLAVE
    ```
 
-4. Sincroniza Gradle y ejecuta la app. La clave no debe subirse a GitHub. Si falta, Android Studio compilará usando `YOUR_API_KEY`, pero Google Maps no mostrará el mapa correctamente.
+4. Este archivo ya está excluido de Git. Sincroniza Gradle y ejecuta la app. Si falta, Android Studio compilará usando `YOUR_API_KEY`, pero Google Maps no mostrará el mapa correctamente.
 
 Para obtener la huella SHA-1 de depuración, abre la ventana Gradle de Android Studio, ejecuta `app > Tasks > android > signingReport` y copia la huella de la variante `debug`.
 
@@ -36,7 +36,7 @@ Para obtener la huella SHA-1 de depuración, abre la ventana Gradle de Android S
 
 1. Abre esta carpeta en Android Studio.
 2. Espera la sincronización de Gradle.
-3. Configura `MAPS_API_KEY` como se indica arriba.
+3. Configura `MAPS_API_KEY` en `secrets.properties` como se indica arriba.
 4. Ejecuta la configuración `app` en un dispositivo o emulador con Google Play Services.
 5. Acepta el permiso de ubicación para centrar el mapa. Toca el mapa para guardar marcadores y toca **Foto** para capturar una imagen del lugar seleccionado.
 
@@ -55,7 +55,7 @@ git remote add origin https://github.com/TU_USUARIO/SimpleGPSMapApp.git
 git push -u origin main
 ```
 
-Revisa antes de publicar que `MAPS_API_KEY` no se haya guardado en archivos versionados. No agregues el archivo global `%USERPROFILE%\.gradle\gradle.properties` al repositorio.
+El archivo local `secrets.properties` está excluido por `.gitignore`; no quites esa exclusión ni agregues la clave a `gradle.properties`, al manifiesto o al README.
 
 ## Respuestas de reflexión
 

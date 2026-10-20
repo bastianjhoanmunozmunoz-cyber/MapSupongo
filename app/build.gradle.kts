@@ -1,5 +1,12 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
+}
+
+val mapsSecrets = Properties().apply {
+    val secretsFile = rootProject.file("secrets.properties")
+    if (secretsFile.exists()) secretsFile.inputStream().use { load(it) }
 }
 
 android {
@@ -16,7 +23,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders["MAPS_API_KEY"] = (project.findProperty("MAPS_API_KEY") as String?) ?: "YOUR_API_KEY"
+        manifestPlaceholders["MAPS_API_KEY"] = mapsSecrets.getProperty("MAPS_API_KEY")
+            ?: (project.findProperty("MAPS_API_KEY") as String?)
+            ?: "YOUR_API_KEY"
     }
 
     buildTypes {

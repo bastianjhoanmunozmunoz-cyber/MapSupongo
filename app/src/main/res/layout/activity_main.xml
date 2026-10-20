@@ -1,33 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main" android:layout_width="match_parent" android:layout_height="match_parent">
-    <fragment android:id="@+id/map" android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent" android:layout_height="match_parent" />
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
-        android:padding="16dp" android:background="@android:color/transparent">
-        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content"
-            app:cardCornerRadius="24dp" app:cardElevation="8dp" app:strokeColor="#E9E5DF" app:strokeWidth="1dp">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="RUMBO  /  BITÁCORA DE LUGARES" android:textColor="#557064" android:textSize="11sp" android:letterSpacing="0.12" android:textStyle="bold" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Guarda el camino." android:textColor="#1D2924" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="4dp" />
-                <TextView android:id="@+id/locationText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Buscando tu ubicación…" android:textColor="#64736C" android:textSize="13sp" android:layout_marginTop="4dp" />
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9ECE6">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="16dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#FFFEFC"
+            app:cardCornerRadius="26dp"
+            app:cardElevation="8dp"
+            app:strokeColor="#E4E9E1"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="17dp">
+
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_compass_badge">
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Brújula Rumbo"
+                        android:src="@drawable/ic_compass_rose"
+                        app:tint="#FFFFFF" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.16"
+                        android:text="R U M B O   ·   BITÁCORA"
+                        android:textColor="#628071"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Guarda el camino."
+                        android:textColor="#1C3027"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/locationText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Preparando tu mapa…"
+                        android:textColor="#687970"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_live_pill"
+                    android:paddingStart="10dp"
+                    android:paddingTop="7dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="7dp"
+                    android:text="●  MAPA"
+                    android:textColor="#356B53"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/myLocationButton"
-        android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="end|center_vertical"
-        android:layout_margin="18dp" android:contentDescription="Ir a mi ubicación" app:backgroundTint="#FFFFFF"
-        app:srcCompat="@android:drawable/ic_menu_mylocation" app:tint="#23483A" />
-    <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_gravity="bottom" android:layout_margin="16dp" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="24dp" app:cardElevation="10dp">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:padding="14dp">
-            <ImageView android:id="@+id/photoPreview" android:layout_width="54dp" android:layout_height="54dp" android:scaleType="centerCrop" android:visibility="gone" android:contentDescription="Última foto" />
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:paddingStart="12dp">
-                <TextView android:id="@+id/placesCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 lugares guardados" android:textColor="#1D2924" android:textSize="15sp" android:textStyle="bold" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Toca el mapa para guardar un lugar" android:textColor="#748079" android:textSize="12sp" android:layout_marginTop="3dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/myLocationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="17dp"
+        android:contentDescription="Ir a mi ubicación"
+        app:backgroundTint="#FFFEFC"
+        app:elevation="7dp"
+        app:srcCompat="@drawable/ic_my_location"
+        app:tint="#244B3A" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mapExpandButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="17dp"
+        android:contentDescription="Expandir mapa"
+        app:backgroundTint="#FFFEFC"
+        app:elevation="7dp"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_expand_map"
+        app:tint="#244B3A" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottomPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="14dp"
+        app:cardBackgroundColor="#FFFEFC"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp"
+        app:strokeColor="#E4E9E1"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <ImageView
+                android:id="@+id/photoPreview"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:background="@drawable/bg_photo_preview"
+                android:contentDescription="Última foto de la bitácora"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:id="@+id/emptyPhotoBadge"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:background="@drawable/bg_photo_badge">
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="Marcador de mapa"
+                    android:src="@drawable/ic_map_pin"
+                    app:tint="#517A65" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.11"
+                    android:text="TU COLECCIÓN"
+                    android:textColor="#7D8C82"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/placesCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="0 puntos"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="#20372B"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Toca el mapa para guardar uno"
+                    android:textColor="#76837A"
+                    android:textSize="10sp" />
             </LinearLayout>
-            <com.google.android.material.button.MaterialButton android:id="@+id/cameraButton" android:layout_width="wrap_content" android:layout_height="52dp" android:text="Foto" android:textAllCaps="false" app:cornerRadius="16dp" app:icon="@android:drawable/ic_menu_camera" app:backgroundTint="#23483A" />
+
+            <ImageButton
+                android:id="@+id/deletePlacesButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="7dp"
+                android:background="@drawable/bg_icon_button"
+                android:contentDescription="Borrar todos los puntos"
+                android:padding="11dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_delete_points"
+                app:tint="#A14E42" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cameraButton"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:minWidth="0dp"
+                android:paddingStart="13dp"
+                android:paddingEnd="15dp"
+                android:text="Foto"
+                android:textAllCaps="false"
+                android:textSize="13sp"
+                app:backgroundTint="#254D3B"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_camera_24"
+                app:iconPadding="6dp"
+                app:iconTint="#FFFFFF" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>
